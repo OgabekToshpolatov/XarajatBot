@@ -25,4 +25,9 @@ public class BotUpdateHandler : IUpdateHandler
             UpdateType.Message => HandleMessageAsync(botClient, update.Message, cancellationToken),
         };
     }
+
+    private object HandleMessageAsync(ITelegramBotClient botClient, Message? message, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
 }
