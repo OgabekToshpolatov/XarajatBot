@@ -18,12 +18,22 @@ public class BotUpdateHandler : IUpdateHandler
         throw new NotImplementedException();
     }
 
-    public Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+    public async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
     {
         var handler = update.Type switch
         {
             UpdateType.Message => HandleMessageAsync(botClient, update.Message, cancellationToken),
         };
+
+        try
+        {
+            await handler
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
+        }
     }
 
     private object HandleMessageAsync(ITelegramBotClient botClient, Message? message, CancellationToken cancellationToken)
